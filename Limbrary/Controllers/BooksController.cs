@@ -11,7 +11,7 @@ namespace Limbrary.Controllers
     {
         public ActionResult Random()
         {
-            var book = new Book() { Name = "The Secret Garden" };
+            var book = new Books() { Title = "The Secret Garden" };
             return View(book);
         }
     }
