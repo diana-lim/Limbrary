@@ -1,0 +1,86 @@
+﻿@model Limbrary.ViewModels.RandomBookViewModel
+
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Book List</h1>
+
+<!-- SEARCH FEATURE -->
+
+<button id="search-book">Search Books</button>
+<div id="function-inputs">
+    @using (Html.BeginForm("Search"))
+    {
+        <input type="text" id="search-input-title" style="display:none;" name="SearchTitle" placeholder="Title" />
+        <input type="text" id="search-input-author" style="display:none;" name="SearchAuthor" placeholder="Author" />
+        <input asp-action="Search" type="submit" value="Search" style="display:none;" id="search-begin" />
+
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @section scripts{ 
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#search-book').click(function () {
+                    $('#search-input-title').show(100);
+                    $('#search-input-author').show(100);
+                    $('#search-begin').show(100);
+                });
+            });
+        </script>
+    }
+</div>
+
+<!-- BOOKS DISPLAY TABLE -->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Books.First().BooksId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books.First().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books.First().Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books.First().AgeGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books.First().InStock)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Books)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BooksId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgeGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InStock)
+            </td>
+            <td>
+                <a asp-action="Check-out" asp-route-id="@item">Check-out</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

@@ -37,11 +37,11 @@ namespace Limbrary
                     .HasName("PK__Books__C223F3B4BDD4F196");
 
                 entity.Property(e => e.BooksId)
-                    .HasColumnName("Books_Id")
+                    .HasColumnName("BooksId")
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.AgeGroup)
-                    .HasColumnName("Age_Group")
+                    .HasColumnName("AgeGroup")
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
@@ -49,7 +49,7 @@ namespace Limbrary
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.InStock).HasColumnName("In_Stock");
+                entity.Property(e => e.InStock).HasColumnName("InStock");
 
                 entity.Property(e => e.Title)
                     .HasMaxLength(60)
